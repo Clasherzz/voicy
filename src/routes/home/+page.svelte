@@ -44,11 +44,15 @@
     };
 </script>
 
-<div>
+<div class="bg-black text-white p-4 rounded">
     <p>Hey there</p>
     <!-- <label>Frequency</label> -->
 
     <input type="text" placeholder="Enter your text" bind:value={prompt} >
-    <input type="range" min="0" max="100" value="50">
+    <!-- <input type="range" bind:value={} min="0" max="100" value="50">
+    <input type="range" bind:value={} min="0" max="100" value="50">
+    <input type="range" bind:value={} min="0" max="100" value="50"> -->
     <button on:click={makeVoice}>Click me</button>
+    <button on:click={()=>window.speechSynthesis.pause}>Pause</button>
+    <button on:click={()=>window.speechSynthesis.resume}>Resume</button>
 </div>
