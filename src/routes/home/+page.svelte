@@ -2,7 +2,11 @@
     // import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
     let prompt:string;
+    let pitch:number = 50;
+    let rate:number = 50;
     $:console.log(prompt);
+    $:console.log(rate);
+    $:console.log(pitch);
 
     function pressed() {
         if ('speechSynthesis' in window) {
@@ -30,8 +34,8 @@
             if (voices.length > 0) {
                 message.voice = voices[0]; // Use the first available voice
             }
-            message.pitch = 1; // Set pitch, range 0 to 2
-            message.rate = 1; // Set rate, range 0.1 to 10
+            message.pitch = pitch; // Set pitch, range 0 to 2
+            message.rate = rate; // Set rate, range 0.1 to 10
             window.speechSynthesis.speak(message);
         } else {
             console.error("Speech Synthesis not supported.");
@@ -43,16 +47,19 @@
         console.log("Voices changed, available voices:", getAllVoices());
     };
 </script>
+<body class="bg-black text-white min-h-screen">
+ 
 
-<div class="bg-black text-white p-4 rounded">
-    <p>Hey there</p>
+<div class="bg-black text-white p-4 rounded border border-white">
+    <p class = "bg-green">Hey there</p>
     <!-- <label>Frequency</label> -->
 
     <input type="text" placeholder="Enter your text" bind:value={prompt} >
-    <!-- <input type="range" bind:value={} min="0" max="100" value="50">
-    <input type="range" bind:value={} min="0" max="100" value="50">
-    <input type="range" bind:value={} min="0" max="100" value="50"> -->
-    <button on:click={makeVoice}>Click me</button>
+    <input type="range" bind:value={pitch} min=0 max=100>
+    <!-- <input type="range" bind:value={} min="0" max="100" value="50"> -->
+    <input type="range" bind:value={rate} min=0 max=100> 
+    <button on:click={makeVoice} >Click me</button>
     <button on:click={()=>window.speechSynthesis.pause}>Pause</button>
     <button on:click={()=>window.speechSynthesis.resume}>Resume</button>
 </div>
+</body>

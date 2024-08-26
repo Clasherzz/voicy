@@ -1,5 +1,6 @@
 <nav>
     <a href = "/home">Home</a>
+    <a href = "/file_talk">FileTalk</a>
 </nav>
 
 <h1 class="text-3xl font-bold underline">Welcome to SvelteKit</h1>
